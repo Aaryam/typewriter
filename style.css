@@ -1,0 +1,37 @@
+html {
+
+}
+
+body {
+    margin: 0;
+}
+
+.main {
+    margin: 1%;
+    margin-top: 2.5%;
+}
+
+.content {
+
+}
+
+.textbox {
+    width: 70vw;
+    height: 85vh;
+    padding: 20px;
+    font-family: 'Courier New', Courier;
+    border: solid rgb(149, 149, 229);
+    outline: none;
+    float: left;
+    resize: none;
+}
+
+.contentbox {
+    width: 20vw;
+    height: 85vh;
+    padding: 20px;
+    font-family: 'Courier New', Courier;
+    border: solid rgb(149, 149, 229);
+    outline: none;
+    float: right;
+}
