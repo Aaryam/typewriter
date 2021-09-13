@@ -3,6 +3,8 @@ var wordCounter = document.getElementById('word-count');
 var charCounter = document.getElementById('char-count');
 var mathResult = document.getElementById('math-result');
 
+var lastAudioElement = null;
+
 var selectedText = "";
 
 document.body.onload = function () {
@@ -13,7 +15,7 @@ document.body.onload = function () {
 
 function getWordCount () {
     let res = [];
-    let str = textAreaString.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+    let str = textAreaString.innerText.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
     str.map((s) => {
       let trimStr = s.trim();
       if (trimStr.length > 0) {
@@ -23,7 +25,7 @@ function getWordCount () {
 
     let wordCount = res.length;
 
-    if (textAreaString.value == "") {
+    if (textAreaString.innerText == "") {
         wordCount = 0;
     }
 
@@ -40,9 +42,9 @@ function setMathSelected () {
 }
 
 function getCharCount () {
-    let charCount = textAreaString.value.length;
+    let charCount = textAreaString.innerText.length;
 
-    if (textAreaString.value == "") {
+    if (textAreaString.innerText == "") {
         charCount = 0;
     }
 
@@ -54,20 +56,25 @@ function saveText (txt) {
 }
 
 function renderText () {
-    textAreaString.value = localStorage.getItem("textContent");
+    textAreaString.innerText = localStorage.getItem("textContent");
 }
 
-function createAudio () {
+function createAudio (isOther) {
     let rand = Math.round(Math.random() * 3);
 
-    if (rand == 0) {
-        playSound('assets/audio/sound.wav');
-    }
-    else if (rand == 1) {
-        playSound('assets/audio/sound.wav');
-    }
-    else if (rand == 2) {
-        playSound('assets/audio/sound.wav');
+    if (isOther == null || isOther == false) {
+        if (rand == 0) {
+            playSound('assets/audio/sound.wav');
+        }
+        else if (rand == 1) {
+            playSound('assets/audio/sound.wav');
+        }
+        else if (rand == 2) {
+            playSound('assets/audio/sound.wav');
+        }
+        else {
+            playSound('assets/audio/sound.wav');
+        }
     }
 }
 
@@ -76,16 +83,24 @@ function playSound (audioSrc) {
     audio.src = audioSrc;
     audio.autoplay = true;
     audio.volume = 0.2;
-
     document.body.appendChild(audio);
-    setTimeout(function() { audio.remove() }, 500);
+    setTimeout(function() { audio.remove() }, 300);
 }   
 
 textAreaString.addEventListener('input', function (e) {
     getWordCount();
     createAudio();
     getCharCount();
-    saveText(textAreaString.value);
+    saveText(textAreaString.innerText);
+});
+
+textAreaString.addEventListener('keydown', function (e) {
+    if (e.keyCode == 13) {
+        playSound('assets/audio/enter-sound.wav');
+    }
+    else if (e.keyCode == 8 || e.keyCode == 46) {
+        playSound('assets/audio/delete-sound.wav');
+    }
 });
 
 document.addEventListener('selectionchange', function (e) {
@@ -107,3 +122,5 @@ document.addEventListener('selectionchange', function (e) {
         charCounter.innerText = "Character Count: " + selectedText.toString().length;
     }
 });
+
+// git push -u origin main

@@ -1,37 +1,78 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* ELEMENTS */
+
+* {
+    margin: 0;
+}
+
 html {
 
 }
 
 body {
     margin: 0;
+    padding: 0;
+    background-color: rgb(58, 58, 173);
+}
+
+p {
+    margin-bottom: 2px;
 }
 
 .main {
-    margin: 1%;
-    margin-top: 2.5%;
+    max-height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .content {
-
+    max-height: 100%;
+    min-height: 100%;
 }
 
 .textbox {
-    width: 70vw;
-    height: 85vh;
-    padding: 20px;
-    font-family: 'Courier New', Courier;
-    border: solid rgb(149, 149, 229);
+    background-color: white;
+    max-width: calc(70vw - 80px);
+    min-width: calc(70vw - 80px);
+    max-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+    padding: 40px;
+    font-family: 'Roboto';
+    font-weight: 350;
+    font-size: medium;
+    border: none;
     outline: none;
     float: left;
     resize: none;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: 0px;
 }
 
+.textbox::-webkit-scrollbar {
+    display: none;
+  }
+
 .contentbox {
-    width: 20vw;
-    height: 85vh;
-    padding: 20px;
-    font-family: 'Courier New', Courier;
-    border: solid rgb(149, 149, 229);
+    max-width: calc(30vw - 80px);
+    min-width: calc(30vw - 80px);
+    max-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+    padding: 40px;
+    font-family: 'Roboto';
+    font-weight: 350;
+    background-color: rgb(58, 58, 173);
     outline: none;
     float: right;
+}
+
+.content-text {
+    color: white;
 }
