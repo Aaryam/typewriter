@@ -2,6 +2,9 @@ var textAreaString = document.getElementById('words-input');
 var wordCounter = document.getElementById('word-count');
 var charCounter = document.getElementById('char-count');
 var mathResult = document.getElementById('math-result');
+var contentBox = document.getElementById('contentbox');
+
+var isDrawn = true;
 
 var lastAudioElement = null;
 
@@ -78,14 +81,34 @@ function createAudio (isOther) {
     }
 }
 
-function playSound (audioSrc) {
+function playSound (audioSrc, rand) {
     let audio = document.createElement('audio');
     audio.src = audioSrc;
     audio.autoplay = true;
     audio.volume = 0.2;
+    if (rand != null) {
+        audio.volume = Math.fround(Math.random(5));
+        audio.playbackRate = rand;
+    }
     document.body.appendChild(audio);
     setTimeout(function() { audio.remove() }, 300);
-}   
+}
+
+function getWordStats (word) {
+    
+}
+
+function toggleDrawer () {
+    if (isDrawn) {
+        textAreaString.style.minWidth = "calc(40vw - 80px)";
+        contentBox.style.minWidth = "calc(60vw - 80px)";
+    }
+    else {
+        textAreaString.style.minWidth = "calc(70vw - 80px)";
+        contentBox.style.minWidth = "calc(30vw - 80px)";
+    }
+    isDrawn = !isDrawn;
+}
 
 textAreaString.addEventListener('input', function (e) {
     getWordCount();
@@ -122,5 +145,9 @@ document.addEventListener('selectionchange', function (e) {
         charCounter.innerText = "Character Count: " + selectedText.toString().length;
     }
 });
+
+contentBox.addEventListener('dblclick', function (e) {
+    toggleDrawer();
+})
 
 // git push -u origin main

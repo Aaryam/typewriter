@@ -9,7 +9,7 @@
 }
 
 html {
-
+    overflow: hidden;
 }
 
 body {
@@ -71,6 +71,7 @@ p {
     background-color: rgb(58, 58, 173);
     outline: none;
     float: right;
+    transition: width 0.2s ease-in-out;
 }
 
 .content-text {
